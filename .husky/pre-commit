@@ -1,21 +1,22 @@
-#!/bin/sh
+#RODAR O phpstan
 
-# Rodar o PHPStan
 ./vendor/bin/phpstan
-if [ $? -ne 0 ]; then
+if [$? -ne 0]; then
     echo "Opá! Deu ruim aqui com PHPSTAN. Ajuste antes de continuar..."
-    exit 1
-fi
+    exit 1;
+fi;
 
-# Formatar cada arquivo alterado
-STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\.php$" || true)
+
+
+#fORMATAR CADA ARQUIVO ALTERADO
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".php\{0,1\}$") || true
 
 for FILE in $STAGED_FILES
 do
-    if [ -f "$FILE" ]; then
-        ./vendor/bin/pint "$FILE"
-        git add "$FILE"
-    fi
-done
+    ./vendor/bin/pint "${FILE}" > /dev/null &1;
+    git add "${FILE}"
 
-exit 0
+done;    
+
+exit 0;
