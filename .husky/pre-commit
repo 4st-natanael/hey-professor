@@ -1,6 +1,6 @@
 #RODAR O phpstan
 
-./vendor/bin/phpstan
+./vendor/bin/phpstan analyse --memory-limit=512M
 if [$? -ne 0]; then
     echo "Opá! Deu ruim aqui com PHPSTAN. Ajuste antes de continuar..."
     exit 1;
@@ -9,7 +9,7 @@ fi;
 
 #RODAR OS TESTES
 
-php artisan test --parallel
+php artisan test 
 if [$? -ne 0]; then
     echo "Opá! Deu ruim aqui com ALGUM TESTE. Ajuste antes de continuar..."
     exit 1;
