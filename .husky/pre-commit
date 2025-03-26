@@ -7,6 +7,14 @@ if [$? -ne 0]; then
 fi;
 
 
+#RODAR OS TESTES
+
+php artisan test --parallel
+if [$? -ne 0]; then
+    echo "Opá! Deu ruim aqui com ALGUM TESTE. Ajuste antes de continuar..."
+    exit 1;
+fi;
+
 
 #fORMATAR CADA ARQUIVO ALTERADO
 
