@@ -26,6 +26,16 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+          - name: Clean Node Modules and Lock File
+        run: | 
+          rm -rf node_modules package-lock.json
+
+    - name: Installing Package.json
+      run: npm install
+        
+    - name: Build Assets
+      run: npm run build
+            
         
     - name: Execute tests (Unit and Feature tests) via Pest
       env:
